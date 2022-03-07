@@ -1,0 +1,7 @@
+*.gif
+*.jpg
+*.png
+*.vim
+
+/main
+/updatebot
