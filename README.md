@@ -6,9 +6,9 @@ A simple CLI util for change your Discord bot's username and avatar while this f
 
 Note: token is first read from `$DISCORD_TOKEN`. If no such variable exists, the program will prompt you to input the token.
 
-**Running with Docker** *coming soon*
+**Running with Docker (easiest)** `docker run -t benricheson101/updatebot [--username=""] [--avatar=""]`
 
-**Download executable** *coming soon*
+**Download executable** Download the corresponding executable from the [releases page](https://github.com/benricheson101/updatebot/releases/latest) and run it from the terminal.
 
 **Build from source**
 ```sh
