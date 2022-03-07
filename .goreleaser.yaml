@@ -9,6 +9,7 @@ builds:
     goos:
       - 'windows'
       - 'linux'
+      - 'darwin'
     goarm:
       - '6'
       - '7'
