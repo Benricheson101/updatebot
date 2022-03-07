@@ -1,0 +1,44 @@
+before:
+  hooks:
+    - 'go mod tidy'
+
+project_name: 'updatebot'
+
+builds:
+  - main: './cmd/updatebot'
+    goos:
+      - 'windows'
+      - 'linux'
+    goarm:
+      - '6'
+      - '7'
+    goarch:
+      - 'amd64'
+      - 'arm64'
+      - '386'
+
+universal_binaries:
+  - replace: true
+
+checksum: {}
+
+release:
+  github:
+    owner: 'benricheson101'
+    name: 'updatebot'
+
+changelog:
+  use: 'github'
+  groups:
+    - title: 'Features'
+      regexp: '^feat(\(\w+\))?:+$'
+      order: 0
+    - title: 'Fixes'
+      regexp: '^fix(\(\w+\))?:+$'
+      order: 1
+    - title: 'Other Changes'
+      order: 999
+
+  filters:
+    exclude:
+      - '^docs:'

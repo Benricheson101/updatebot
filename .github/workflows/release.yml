@@ -1,25 +1,32 @@
 on:
-  release:
-    types: ['created']
+  push:
+    tags:
+      - '*'
 
 jobs:
-  # Credit: https://github.com/benny-discord/cache-server/blob/master/.github/workflows/release.yml
-  release-binaries:
-    name: 'Release Go Binary'
+  goreleaser:
     runs-on: 'ubuntu-latest'
-    strategy:
-      matrix:
-        goos: ['linux', 'windows', 'darwin']
-        goarch: ["386", 'amd64', 'arm64']
     steps:
-    - uses: 'actions/checkout@v2'
-    - uses: 'wangyoucao577/go-release-action@v1.25'
-      with:
-        github_token: '${{secrets.GITHUB_TOKEN}}'
-        goos: '${{matrix.goos}}'
-        goarch: '${{matrix.goarch}}'
-        goversion: "https://dl.google.com/go/go1.17.1.linux-amd64.tar.gz"
+      - uses: 'actions/checkout@v2'
+        with:
+          fetch-depth: 0
 
+      - run: 'git fetch --force --tags'
+
+      - uses: 'actions/setup-go@v2'
+        with:
+          go-version: '1.17'
+
+      - name: 'Run GoReleaser'
+        uses: 'goreleaser/goreleaser-action@v2'
+        with:
+          distribution: 'goreleaser'
+          version: 'latest'
+          args: 'release --rm-dist'
+        env:
+          GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'
+
+  # TODO: move to goreleaser?
   push-to-docker-registries:
     name: 'Push Docker image to multiple registries'
     runs-on: 'ubuntu-latest'

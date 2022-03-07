@@ -3,5 +3,7 @@
 *.png
 *.vim
 
+/dist/
+
 /main
 /updatebot
