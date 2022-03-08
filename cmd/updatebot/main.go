@@ -116,7 +116,7 @@ func getToken() string {
 		return ""
 	}
 
-	fmt.Print("Bot Token (imput feedback is NOT shown) >> ")
+	fmt.Print("Bot Token (input feedback is NOT shown) >> ")
 	tkn, err := term.ReadPassword(int(os.Stdin.Fd()))
 	fmt.Println()
 	if err != nil {
