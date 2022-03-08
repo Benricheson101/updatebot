@@ -32,10 +32,10 @@ changelog:
   use: 'github'
   groups:
     - title: 'Features'
-      regexp: '^feat(\(\w+\))?:+$'
+      regexp: ^feat(\(\w+\))?:+$
       order: 0
     - title: 'Fixes'
-      regexp: '^fix(\(\w+\))?:+$'
+      regexp: ^fix(\(\w+\))?:+$
       order: 1
     - title: 'Other Changes'
       order: 999
